@@ -6,11 +6,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>正先爱老婆</title>
-     <style>
-        body {
+    <link rel="stylesheet" href="css/normalize.css">
+    <script>
+        let font = document.documentElement.clientWidth
+        let html = document.querySelectorAll('html')[0]
+        html.style.fontSize = (font / 10) + 'px'//1rem等于
+
+
+    </script>
+    <style>
+        /* body {
             background-color: black;
-background-size: cover;
-        }
+            background-size: cover;
+        } */
 
         * {
             padding: 0;
@@ -18,30 +26,30 @@ background-size: cover;
         }
 
         .box1 {
-            width: 100%;
-            /* background-color: pink; */
-            margin: 140px auto;
-
+            padding-top: 0.6rem;
 
         }
 
         .one {
-            width: 420px;
-            margin: 0 auto;
-            
+
+
+            width: 100%;
+            display: flex;
+            justify-content: center;
         }
 
         .one>li {
+
             list-style: none;
-            float: left;
-            font-size: 35px;
+
+            font-size: 0.58rem;
             font-weight: bold;
-            margin-top: 20px;
+            margin-top: 0.3rem;
             color: aliceblue;
         }
 
         a {
-            color: #f50707;
+            color: #de1717;
         }
 
         span {
@@ -49,69 +57,102 @@ background-size: cover;
         }
 
         h1 {
-            /* text-indent: 122px; */
-            font-size: 33px;
-            color: #10c0ec;
+
+            opacity: 0.9;
+            font-size: 0.8rem;
+            color: #23d3ff;
             text-align: center;
         }
 
 
 
-        .ny>li {
-            list-style: none;
-            float: left;
-
-        }
-
-        .box2 {
-            width: 600px;
-            height: 250px;
-            margin: 100px auto;
-            overflow: hidden;
-        }
-
-        .ny {
-            float: left;
-            /* width: 4750px; */
-            width: 2100%;
-            height: 250px;
-            animation-name: hzx;
-            animation-duration: 45s;
-            animation-iteration-count: infinite;
-            animation-timing-function: linear;
-        }
-
-
-        @keyframes hzx {
-            0% {
-                transform: translate(0, 0);
-            }
-
-            100% {
-                transform: translateX(-4750px);
-            }
-        }
-
-        img {
-            width: 250px;
-            height: 250px;
-        }
 
 
         canvas {
+
+            position: fixed;
+            top: -67px;
+            left: -25px;
+        }
+
+
+        /* focus */
+
+        .focus {
+            opacity: 0.8;
+            position: relative;
+            padding-top: 0.4rem;
+            overflow: hidden;
+        }
+
+        .focus img {
+            width: 100%;
+            height: 18rem;
+        }
+
+        .focus ul {
+            overflow: hidden;
+            width: 500%;
+            margin-left: -100%;
+        }
+
+        .focus ul li {
+            float: left;
+            width: 20%;
+        }
+
+        .focus ol {
             position: absolute;
-            top: -20px;
+            bottom: 0.7rem;
+            right: .4rem;
+            margin: 0 0.2rem;
+        }
+
+        .focus ol li {
+            display: inline-block;
+            width: 0.8rem;
+            height: 0.1rem;
+            background-color: #fff;
+            list-style: none;
+            border-radius: 0.2rem;
+            transition: all .3s;
+        }
+
+        .focus ol li.current {
+            width: 0.8rem;
+        }
+
+
+
+        body {
+            background-color: black;
+            background-size: cover;
+            max-width: 54rem;
+            min-width: 3.2rem;
+            margin: 0 auto;
+            font: normal 14px/1.5 Tahoma, "Lucida Grande", Verdana, "Microsoft Yahei", STXihei, hei;
+            color: #000;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        div {
+            box-sizing: border-box;
         }
     </style>
 </head>
 
-<body >
+<body>
+    <audio autoplay="autoplay" loop="loop" preload="auto" src="忘记时间.mp3"></audio>
     <canvas id="canvas"></canvas>
-    <audio autoplay="autoplay" loop="loop" preload="auto" src="忘记时间.mp3">
-    </audio>
-
     <div class="box1">
-
         <h1>黄正先和聂琰已经相爱</h1>
         <ul class="one">
             <li><span id="data">xx</span> <a>天</a>&nbsp;</li>
@@ -119,71 +160,34 @@ background-size: cover;
             <li><span id="minutes">xx</span> <a>分</a>&nbsp;</li>
             <li><span id="seconds">xx</span> <a>秒</a>&nbsp;</li>
         </ul>
+
     </div>
 
-
-
-    <div class="box2">
-        <ul class="ny">
-            <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>  <li><img src="1.jpg" alt=""></li>
-<!--             <li><img src="2.jpg" alt=""></li>
-
-            <li><img src="微信图片_20221129181051.jpg" alt=""></li>
-            <li><img src="微信图片_20221129181045.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180947.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180933.jpg" alt=""></li>
-            <li><img src="5.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180917.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180905.jpg" alt=""></li>
-            <li><img src="3.jpg" alt=""></li>
-            <li><img src="4.jpg" alt=""></li>
-            <li><img src="6.jpg" alt=""></li>
-            <li><img src="7.jpg" alt=""></li>
-            <li><img src="8.jpg" alt=""></li>
-            <li><img src="9.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180823.jpg" alt=""></li>
-             <li><img src="老婆.jpg" alt=""></li>
-            <li><img src="10.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180758.jpg" alt=""></li>
-
+    <div class="focus">
+        <ul>
             <li><img src="1.jpg" alt=""></li>
-            <li><img src="2.jpg" alt=""></li>
-            
-            <li><img src="微信图片_20221129181051.jpg" alt=""></li>
-            <li><img src="微信图片_20221129181045.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180947.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180933.jpg" alt=""></li> 
-            <li><img src="5.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180917.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180905.jpg" alt=""></li>
-            <li><img src="3.jpg" alt=""></li>
-            <li><img src="4.jpg" alt=""></li>
-            <li><img src="6.jpg" alt=""></li>
-            <li><img src="7.jpg" alt=""></li>
-            <li><img src="8.jpg" alt=""></li>
-            <li><img src="9.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180823.jpg" alt=""></li>
-            <li><img src="老婆.jpg" alt=""></li>
-            <li><img src="10.jpg" alt=""></li>
-            <li><img src="微信图片_20221129180758.jpg" alt=""></li> -->
+            <li><img src="1.jpg" alt=""></li>
+            <li><img src="1.jpg" alt=""></li>
+            <li><img src="1.jpg" alt=""></li>
+            <li><img src="1.jpg" alt=""></li>
         </ul>
+        <!-- 小圆点 -->
+        <ol>
+            <li class="current"></li>
+            <li></li>
+            <li></li>
+        </ol>
+    </div>
+
     </div>
     <!-- <canvas id="canvas"></canvas> -->
     <script>
-        var canvas=document.getElementById('canvas')
-         canvas.onclick = function () {
-                // console.log(music);
-                if (music.paused) {
-                    // document.body.style.backgroundColor = '#bcebbd'
-                    // 播放音乐
-                    music.play()
-                }
-                // else {
-                //     // 暂停音乐
-                //     music.pause()
-                //     // document.body.style.backgroundColor = '#ffd1cd'
-                // }
+        var canvas = document.getElementById('canvas')
+        canvas.onclick = function () {
+            if (music.paused) {
+                music.play()
             }
+        }
         var data = document.getElementById('data')
         var hours = document.getElementById('hours')
         var minutes = document.getElementById('minutes')
@@ -204,7 +208,7 @@ background-size: cover;
 
         }
 
-        var time1 = new Date(2022, 4, 17, 17, 20, 00)
+        var time1 = new Date(2022, 4, 17, 17, 20)
         function hzx() {
 
             var time2 = new Date()
@@ -222,61 +226,173 @@ background-size: cover;
         }
         hzx()
         setInterval(hzx, 1000)
-         var canvas = document.getElementById("canvas")
-            var context = canvas.getContext("2d")  //2d 即指二维平面
-            var w = window.innerWidth
-            var h = window.innerHeight
-            canvas.width = w;  //全局分布
-            canvas.height = h; 
-             var count = 120 //雪花的个数
-                var snows = [] //雪花对象数组
-                for (var i = 0; i < count; i++) {
-                    snows.push({
-                        x: Math.random() * w,    //Math.random()用于生成0～1的随机数
+        var canvas = document.getElementById("canvas")
+        var context = canvas.getContext("2d")  //2d 即指二维平面
+        var w = window.innerWidth
+        var h = window.innerHeight
+        canvas.width = w;  //全局分布
+        canvas.height = h;
+        var count = 120 //雪花的个数
+        var snows = [] //雪花对象数组
+        for (var i = 0; i < count; i++) {
+            snows.push({
+                x: Math.random() * w,    //Math.random()用于生成0～1的随机数
+                y: Math.random() * h,
+                r: Math.random() * 5,
+            })
+        }
+        function draw() {
+            context.clearRect(0, 0, w, h)
+            context.beginPath()
+            for (var i = 0; i < count; i++) {
+                var snow = snows[i];
+                context.fillStyle = "rgb(255,255,255)" //设置雪花的样式
+                context.shadowBlur = 10;
+                context.shadowColor = "rgb(255,255,255)";
+
+
+                //moveTo 移动到指定的坐标
+                context.moveTo(snow.x, snow.y)
+                // 使用canvas arc()创建一个圆形
+                //x，y，r：圆的中心的x坐标和y坐标，r为半径
+                //0,Math.PI * 2起始弧度和结束弧度
+
+                context.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2)
+
+            }
+            //画布填充
+            context.fill()
+            move()
+        }
+        function move() {
+            for (var i = 0; i < count; i++) {
+                var snow = snows[i];
+                snow.y += (7 - snow.r) / 10 //从上往下飘落
+                snow.x += ((5 - snow.r) / 10)//从左到右飘落
+                if (snow.y > h) {
+                    snows[i] = {
+                        x: Math.random() * w,
                         y: Math.random() * h,
                         r: Math.random() * 5,
-                    })
-                }
-                 function draw() {
-                        context.clearRect(0, 0, w, h)
-                        context.beginPath()
-                        for (var i = 0; i < count; i++) {
-                            var snow = snows[i];
-                            context.fillStyle = "rgb(255,255,255)" //设置雪花的样式
-                            context.shadowBlur = 10;
-                            context.shadowColor = "rgb(255,255,255)";
-
-
-                            //moveTo 移动到指定的坐标
-                            context.moveTo(snow.x, snow.y)
-                            // 使用canvas arc()创建一个圆形
-                            //x，y，r：圆的中心的x坐标和y坐标，r为半径
-                            //0,Math.PI * 2起始弧度和结束弧度
-
-                            context.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2)
-
-                        }
-                        //画布填充
-                        context.fill()
-                        move()
                     }
-                     function move() {
-                            for (var i = 0; i < count; i++) {
-                                var snow = snows[i];
-                                snow.y += (7 - snow.r) / 10 //从上往下飘落
-                                snow.x += ((5 - snow.r) / 10)//从左到右飘落
-                                if (snow.y > h) {
-                                    snows[i] = {
-                                        x: Math.random() * w,
-                                        y: Math.random() * h,
-                                        r: Math.random() * 5,
-                                    }
-                                }
-                            }
+                }
+            }
+        }
+        draw()
+        //每毫秒刷新一次
+        setInterval(draw, 2.3)
+
+        // 轮播
+        window.addEventListener('load', function () {
+            // alert(1);
+            // 1. 获取元素 
+            var focus = document.querySelector('.focus');
+            var ul = focus.children[0];
+            // 获得focus 的宽度
+            var w = focus.offsetWidth;
+            var ol = focus.children[1];
+            // 2. 利用定时器自动轮播图图片
+            var index = 0;
+            var timer = setInterval(function () {
+                index++;
+                var translatex = -index * w;
+                ul.style.transition = 'all .3s';
+                ul.style.transform = 'translateX(' + translatex + 'px)';
+            }, 2000);
+            // 等着我们过渡完成之后，再去判断 监听过渡完成的事件 transitionend 
+            ul.addEventListener('transitionend', function () {
+                // 无缝滚动
+                if (index >= 3) {
+                    index = 0;
+                    // console.log(index);
+                    // 去掉过渡效果 这样让我们的ul 快速的跳到目标位置
+                    ul.style.transition = 'none';
+                    // 利用最新的索引号乘以宽度 去滚动图片
+                    var translatex = -index * w;
+                    ul.style.transform = 'translateX(' + translatex + 'px)';
+                } else if (index < 0) {
+                    index = 2;
+                    ul.style.transition = 'none';
+                    // 利用最新的索引号乘以宽度 去滚动图片
+                    var translatex = -index * w;
+                    ul.style.transform = 'translateX(' + translatex + 'px)';
+                }
+                // 3. 小圆点跟随变化
+                // 把ol里面li带有current类名的选出来去掉类名 remove
+                ol.querySelector('.current').classList.remove('current');
+                // 让当前索引号 的小li 加上 current   add
+                ol.children[index].classList.add('current');
+            });
+
+            // 4. 手指滑动轮播图 
+            // 触摸元素 touchstart： 获取手指初始坐标
+            var startX = 0;
+            var moveX = 0; // 后面我们会使用这个移动距离所以要定义一个全局变量
+            var flag = false;
+            ul.addEventListener('touchstart', function (e) {
+                startX = e.targetTouches[0].pageX;
+                // 手指触摸的时候就停止定时器
+                clearInterval(timer);
+            });
+            // 移动手指 touchmove： 计算手指的滑动距离， 并且移动盒子
+            ul.addEventListener('touchmove', function (e) {
+                // 计算移动距离
+                moveX = e.targetTouches[0].pageX - startX;
+                // 移动盒子：  盒子原来的位置 + 手指移动的距离 
+                var translatex = -index * w + moveX;
+                // 手指拖动的时候，不需要动画效果所以要取消过渡效果
+                ul.style.transition = 'none';
+                ul.style.transform = 'translateX(' + translatex + 'px)';
+                flag = true; // 如果用户手指移动过我们再去判断否则不做判断效果
+                e.preventDefault(); // 阻止滚动屏幕的行为
+            });
+            // 手指离开 根据移动距离去判断是回弹还是播放上一张下一张
+            ul.addEventListener('touchend', function (e) {
+                if (flag) {
+                    // (1) 如果移动距离大于50像素我们就播放上一张或者下一张
+                    if (Math.abs(moveX) > 50) {
+                        // 如果是右滑就是 播放上一张 moveX 是正值
+                        if (moveX > 0) {
+                            index--;
+                        } else {
+                            // 如果是左滑就是 播放下一张 moveX 是负值
+                            index++;
                         }
-                         draw()
-                            //每毫秒刷新一次
-                            setInterval(draw, 1)
+                        var translatex = -index * w;
+                        ul.style.transition = 'all .3s';
+                        ul.style.transform = 'translateX(' + translatex + 'px)';
+                    } else {
+                        // (2) 如果移动距离小于50像素我们就回弹
+                        var translatex = -index * w;
+                        ul.style.transition = 'all .1s';
+                        ul.style.transform = 'translateX(' + translatex + 'px)';
+                    }
+                }
+                // 手指离开的时候就重新开启定时器
+                clearInterval(timer);
+                timer = setInterval(function () {
+                    index++;
+                    var translatex = -index * w;
+                    ul.style.transition = 'all .3s';
+                    ul.style.transform = 'translateX(' + translatex + 'px)';
+                }, 2000);
+            });
+
+
+            // 返回顶部模块制作
+            var goBack = document.querySelector('.goBack');
+            var nav = document.querySelector('nav');
+            window.addEventListener('scroll', function () {
+                if (window.pageYOffset >= nav.offsetTop) {
+                    goBack.style.display = 'block';
+                } else {
+                    goBack.style.display = 'none';
+                }
+            });
+            goBack.addEventListener('click', function () {
+                window.scroll(0, 0);
+            })
+        })
     </script>
 </body>
 
