@@ -10,25 +10,16 @@
         let font = document.documentElement.clientWidth
         let html = document.querySelectorAll('html')[0]
         html.style.fontSize = (font / 10) + 'px'//1rem等于
+      
 
 
     </script>
-    <style>
-        /* body {
-            background-color: black;
-            background-size: cover;
-        } */
 
+    <style>
         * {
             padding: 0;
             margin: 0;
         }
-
-        .box1 {
-            /* padding-top: 0.6rem; */
-
-        }
-
         .one {
 
 
@@ -84,7 +75,7 @@
         .focus img {
             width: 100%;
             height: 15rem;
-           
+
         }
 
         .focus ul {
@@ -129,8 +120,9 @@
 </head>
 
 <body>
-    <audio id="myAudio" autoplay="autoplay" loop="loop" preload="auto" src="忘记时间.mp3"></audio>
-    <canvas id="canvas"></canvas>
+    <!-- <audio autoplay="autoplay" loop="loop" preload="auto" src="忘记时间.mp3"></audio> -->
+    <audio src="忘记时间.mp3" autoplay></audio>
+
     <div class="box1">
         <h1>黄正先和聂琰已经相爱</h1>
         <ul class="one">
@@ -158,9 +150,14 @@
     </div>
 
     </div>
+    <canvas id="canvas"></canvas>
     <!-- <canvas id="canvas"></canvas> -->
     <script>
-
+        var audio = document.getElementsByTagName("audio")[0];
+        audio.volume = 0.5; //设置音量为50%
+        window.onload = function () {
+            audio.play();
+        }
 
 
         var data = document.getElementById('data')
@@ -361,7 +358,7 @@
 
 
         })
-       
+
     </script>
 </body>
 
