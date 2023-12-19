@@ -85,35 +85,21 @@
         .focus img {
             width: 100%;
             height: 15rem;
+            background-color: #ff0000;
         }
 
         .focus ul {
+            display: flex;
             overflow: hidden;
-            width: 500%;
-            margin-left: -100%;
+            width: 700%;
         }
 
         .focus ul li {
+            overflow: hidden;
             float: left;
             width: 20%;
         }
 
-        .focus ol {
-            position: absolute;
-            bottom: 0.7rem;
-            right: .4rem;
-            margin: 0 0.2rem;
-        }
-
-        .focus ol li {
-            display: inline-block;
-            width: 0.8rem;
-            height: 0.1rem;
-            background-color: #fff;
-            list-style: none;
-            border-radius: 0.2rem;
-            transition: all .3s;
-        }
 
 
 
@@ -144,7 +130,7 @@
 </head>
 
 <body>
-    <audio autoplay="autoplay" loop="loop" preload="auto" src="忘记时间.mp3"></audio>
+    <audio id="myAudio" autoplay="autoplay" loop="loop" preload="auto" src="忘记时间.mp3"></audio>
     <canvas id="canvas"></canvas>
     <div class="box1">
         <h1>黄正先和聂琰已经相爱</h1>
@@ -158,11 +144,15 @@
     </div>
 
     <div class="focus">
-        <ul>
+        <ul id="ull">
+
+
             <li><img src="1.jpg" alt=""></li>
+            <li><img src="5.jpg" alt=""></li>
             <li><img src="2.jpg" alt=""></li>
             <li><img src="3.jpg" alt=""></li>
             <li><img src="4.jpg" alt=""></li>
+            <li><img src="1.jpg" alt=""></li>
             <li><img src="5.jpg" alt=""></li>
         </ul>
 
@@ -171,12 +161,9 @@
     </div>
     <!-- <canvas id="canvas"></canvas> -->
     <script>
-        var canvas = document.getElementById('canvas')
-        canvas.onclick = function () {
-            if (music.paused) {
-                music.play()
-            }
-        }
+
+
+
         var data = document.getElementById('data')
         var hours = document.getElementById('hours')
         var minutes = document.getElementById('minutes')
@@ -277,22 +264,29 @@
             // 1. 获取元素 
             var focus = document.querySelector('.focus');
             var ul = focus.children[0];
+            var ull = document.getElementById("ull").querySelectorAll('li').length
+            // console.log(ull)
             // 获得focus 的宽度
             var w = focus.offsetWidth;
-            var ol = focus.children[1];
+
             // 2. 利用定时器自动轮播图图片
             var index = 0;
             var timer = setInterval(function () {
+                // 无缝滚动
                 index++;
+
                 var translatex = -index * w;
-                ul.style.transition = 'all .3s';
+                // console.log(index)
+                // console.log(translatex)
+                ul.style.transition = 'all .8s';
                 ul.style.transform = 'translateX(' + translatex + 'px)';
+
             }, 2000);
             // 等着我们过渡完成之后，再去判断 监听过渡完成的事件 transitionend 
             ul.addEventListener('transitionend', function () {
-                // 无缝滚动
-                if (index >= 3) {
-                    index = 0;
+
+                if (index > 5) {
+                    index = 1;
                     // console.log(index);
                     // 去掉过渡效果 这样让我们的ul 快速的跳到目标位置
                     ul.style.transition = 'none';
@@ -300,7 +294,7 @@
                     var translatex = -index * w;
                     ul.style.transform = 'translateX(' + translatex + 'px)';
                 } else if (index < 0) {
-                    index = 2;
+                    index = 4;
                     ul.style.transition = 'none';
                     // 利用最新的索引号乘以宽度 去滚动图片
                     var translatex = -index * w;
@@ -308,10 +302,9 @@
                 }
                 // 3. 小圆点跟随变化
                 // 把ol里面li带有current类名的选出来去掉类名 remove
-                ol.querySelector('.current').classList.remove('current');
-                // 让当前索引号 的小li 加上 current   add
-                ol.children[index].classList.add('current');
+
             });
+
 
             // 4. 手指滑动轮播图 
             // 触摸元素 touchstart： 获取手指初始坐标
@@ -368,20 +361,20 @@
             });
 
 
-            // 返回顶部模块制作
-            var goBack = document.querySelector('.goBack');
-            var nav = document.querySelector('nav');
-            window.addEventListener('scroll', function () {
-                if (window.pageYOffset >= nav.offsetTop) {
-                    goBack.style.display = 'block';
-                } else {
-                    goBack.style.display = 'none';
-                }
-            });
-            goBack.addEventListener('click', function () {
-                window.scroll(0, 0);
-            })
         })
+        const myAudio = document.getElementById('myAudio');
+        var d = document.body
+        d.onclick = function () {
+            myAudio.play();
+        }
+        var a = function () {
+            myAudio.play(); // 开始或重新播放音乐
+
+        }
+        setTimeout(function () {
+            a()
+            myAudio.play();
+        }, 10)
     </script>
 </body>
 
