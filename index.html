@@ -17,6 +17,7 @@
             padding: 0;
             margin: 0;
         }
+
         .one {
 
 
@@ -50,20 +51,12 @@
             font-family: 楷体;
             opacity: 0.9;
             font-size: 0.8rem;
-            color: #23d3ff;
+            color: #8b08ef;
             text-align: center;
         }
 
-        canvas {
-
-            position: fixed;
-            top: -67px;
-            left: -25px;
-        }
-
-
         .focus {
-             z-index: 999;
+            z-index: 999;
             opacity: 0.8;
             position: relative;
             padding-top: 0.2rem;
@@ -93,7 +86,7 @@
 
 
         body {
-            background-color: black;
+            background-color: rgb(0, 0, 0);
             background-size: cover;
             max-width: 54rem;
             min-width: 3.2rem;
@@ -117,8 +110,8 @@
     </style>
 </head>
 
-<body><canvas id="canvas"></canvas>
-    
+<body>
+
     <audio loop="loop" preload="auto" src="忘记时间.mp3" autoplay></audio>
 
     <div class="box1">
@@ -136,22 +129,51 @@
         <ul id="ull">
 
 
-            <li><img src="1.jpg" alt=""></li>
+            <li><img src="3.jpg" alt=""></li>
             <li><img src="5.jpg" alt=""></li>
             <li><img src="2.jpg" alt=""></li>
-            <li><img src="3.jpg" alt=""></li>
-            <li><img src="4.jpg" alt=""></li>
             <li><img src="1.jpg" alt=""></li>
+            <li><img src="4.jpg" alt=""></li>
+            <li><img src="3.jpg" alt=""></li>
             <li><img src="5.jpg" alt=""></li>
         </ul>
 
     </div>
 
     </div>
-    
-    <!-- <canvas id="canvas"></canvas> -->
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script>
-       
+        window.onload = function () {
+            var minSize = 10; //最小字体
+            var maxSize = 20;//最大字体
+            var newOne = 200; //生成雪花间隔
+            var flakColor = "#fff"; //雪花颜色
+            var flak = $("<div class='xh'></div>").css({ position: "absolute", "top": "0px" }).html(' <img src="雪花.png">');//定义一个雪花
+            var dhight = $(window).height(); //定义视图高度
+            var dw = $(window).width(); //定义视图宽度
+            setInterval(function () {
+                var sizeflak = minSize + Math.random() * maxSize; //产生大小不等的雪花
+                var startLeft = Math.random() * dw; //雪花生成是随机的left值
+                var startopcity = 0.7 + Math.random() * 0.6; //随机透明度
+                var endpositionTop = dhight; //雪花停止top的位置
+                var endLeft = Math.random() * dw; //雪花停止的left位置
+                var durationfull = 5000 + Math.random() * 6000; //雪花飘落速度不同
+                flak.clone().appendTo($("body")).css({
+                    "left": startLeft,
+                    "opacity": startopcity,
+                    "font-size": sizeflak,
+                    "color": flakColor
+                }).animate({
+                    "top": endpositionTop,
+                    "left": endLeft,
+                    "apacity": 0.1
+                }, durationfull, function () {
+                    $(this).remove()
+                });
+            }, newOne);
+        }
+
+
 
 
         var data = document.getElementById('data')
@@ -192,61 +214,6 @@
         }
         hzx()
         setInterval(hzx, 1000)
-        var canvas = document.getElementById("canvas")
-        var context = canvas.getContext("2d")  //2d 即指二维平面
-        var w = window.innerWidth
-        var h = window.innerHeight
-        canvas.width = w;  //全局分布
-        canvas.height = h;
-        var count = 120 //雪花的个数
-        var snows = [] //雪花对象数组
-        for (var i = 0; i < count; i++) {
-            snows.push({
-                x: Math.random() * w,    //Math.random()用于生成0～1的随机数
-                y: Math.random() * h,
-                r: Math.random() * 5,
-            })
-        }
-        function draw() {
-            context.clearRect(0, 0, w, h)
-            context.beginPath()
-            for (var i = 0; i < count; i++) {
-                var snow = snows[i];
-                context.fillStyle = "rgb(255,255,255)" //设置雪花的样式
-                context.shadowBlur = 10;
-                context.shadowColor = "rgb(255,255,255)";
-
-
-                //moveTo 移动到指定的坐标
-                context.moveTo(snow.x, snow.y)
-                // 使用canvas arc()创建一个圆形
-                //x，y，r：圆的中心的x坐标和y坐标，r为半径
-                //0,Math.PI * 2起始弧度和结束弧度
-
-                context.arc(snow.x, snow.y, snow.r, 0, Math.PI * 2)
-
-            }
-            //画布填充
-            context.fill()
-            move()
-        }
-        function move() {
-            for (var i = 0; i < count; i++) {
-                var snow = snows[i];
-                snow.y += (7 - snow.r) / 10 //从上往下飘落
-                snow.x += ((5 - snow.r) / 10)//从左到右飘落
-                if (snow.y > h) {
-                    snows[i] = {
-                        x: Math.random() * w,
-                        y: Math.random() * h,
-                        r: Math.random() * 5,
-                    }
-                }
-            }
-        }
-        draw()
-        //每毫秒刷新一次
-        setInterval(draw, 2.3)
 
         // 轮播
         window.addEventListener('load', function () {
@@ -352,11 +319,7 @@
 
 
         })
- var audio = document.getElementsByTagName("audio")[0];
-        audio.volume = 0.5; //设置音量为50%
-        window.onload = function () {
-            audio.play();
-        }
+
     </script>
 </body>
 
