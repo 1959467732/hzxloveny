@@ -173,97 +173,7 @@
             var newOne = 100; //生成雪花间隔
            
         }
-        var idx = 0,
-        img_width = 15,
-        img_height = 15,
-        ifmove = false,
-        page_x,
-        page_y,
-        that,
-        min_length = 120,   //最少雪花数量
-        win_width = $(window).width();
-
-    $(window).resize(function(){
-      win_width = $(window).width()
-    })
-
-    var interval = setInterval(function(){
-      var fall_x = Math.floor(Math.random()*(win_width-img_width/2))
-      $('.fall').append("<div class='fall_img' style='background:url(fall.png) no-repeat'></div>")
-      var select = $('.fall_img').eq(idx)
-      img_click()
-      fall_start(fall_x,-img_height,select)
-      idx++
-    }, 800);
-
-    document.addEventListener('visibilitychange',function(){
-      if(document.hidden){
-        all_stop()
-      }else{
-        all_start()
-      }
-    })
-
-    function fall_start(fall_x,fall_y,select) {
-      var left = fall_x - img_width/2
-      select.css({'top':fall_y,'left':left,'width':img_width,'height':img_height})
-      fall_animate(select,fall_y)
-    }
-
-    function fall_animate(select,fall_y){
-      var move_y = $('.fall').height() + img_height
-      var move_ys = $('.fall').height() + img_height - fall_y
-      var move_time = (move_ys/img_height)*200
-      select.animate({top:move_y},move_time,'linear',function(){
-        if(idx > min_length){ 
-          clearInterval(interval)
-        }
-        var fall_x = Math.floor(Math.random()*(win_width-img_width/2))
-        fall_start(fall_x,-img_height,$(this))
-      })
-    }
-
-    function fall_stop(select){
-      select.stop(true,false)
-    }
-
-    function all_stop(){
-      $('.fall_img').each(function(){
-        $(this).stop(true,false)
-      })
-    }
-
-    function all_start() {
-      $('.fall_img').each(function(){
-        var this_top = $(this)[0].offsetTop
-        var this_left = $(this)[0].offsetLeft
-        fall_start(this_left+img_width/2,this_top,$(this))
-      })
-    }
-
-    function img_click(){
-      $('.fall_img').on('mousedown',function(e){
-        fall_stop($(this))
-        that = $(this)
-        page_x = e.pageX - img_width/2
-        page_y = e.pageY - img_height/2
-        ifmove = true
-      })
-      $('.fall').mousemove(function(e){
-        if(ifmove){
-          page_x = e.pageX - img_width/2
-          page_y = e.pageY - img_height/2
-          that.css({'left':page_x,'top':page_y})
-        }
-      })
-      $('.fall_img').on('mouseup',function(){
-        if(ifmove){
-          ifmove = false
-          fall_start(page_x+img_width/2,page_y,$(this))
-        }
-      })
-    }
-
+       
 
 
         var data = document.getElementById('data')
@@ -409,6 +319,96 @@
 
 
         })
+ var idx = 0,
+        img_width = 15,
+        img_height = 15,
+        ifmove = false,
+        page_x,
+        page_y,
+        that,
+        min_length = 120,   //最少雪花数量
+        win_width = $(window).width();
+
+    $(window).resize(function(){
+      win_width = $(window).width()
+    })
+
+    var interval = setInterval(function(){
+      var fall_x = Math.floor(Math.random()*(win_width-img_width/2))
+      $('.fall').append("<div class='fall_img' style='background:url(fall.png) no-repeat'></div>")
+      var select = $('.fall_img').eq(idx)
+      img_click()
+      fall_start(fall_x,-img_height,select)
+      idx++
+    }, 800);
+
+    document.addEventListener('visibilitychange',function(){
+      if(document.hidden){
+        all_stop()
+      }else{
+        all_start()
+      }
+    })
+
+    function fall_start(fall_x,fall_y,select) {
+      var left = fall_x - img_width/2
+      select.css({'top':fall_y,'left':left,'width':img_width,'height':img_height})
+      fall_animate(select,fall_y)
+    }
+
+    function fall_animate(select,fall_y){
+      var move_y = $('.fall').height() + img_height
+      var move_ys = $('.fall').height() + img_height - fall_y
+      var move_time = (move_ys/img_height)*200
+      select.animate({top:move_y},move_time,'linear',function(){
+        if(idx > min_length){ 
+          clearInterval(interval)
+        }
+        var fall_x = Math.floor(Math.random()*(win_width-img_width/2))
+        fall_start(fall_x,-img_height,$(this))
+      })
+    }
+
+    function fall_stop(select){
+      select.stop(true,false)
+    }
+
+    function all_stop(){
+      $('.fall_img').each(function(){
+        $(this).stop(true,false)
+      })
+    }
+
+    function all_start() {
+      $('.fall_img').each(function(){
+        var this_top = $(this)[0].offsetTop
+        var this_left = $(this)[0].offsetLeft
+        fall_start(this_left+img_width/2,this_top,$(this))
+      })
+    }
+
+    function img_click(){
+      $('.fall_img').on('mousedown',function(e){
+        fall_stop($(this))
+        that = $(this)
+        page_x = e.pageX - img_width/2
+        page_y = e.pageY - img_height/2
+        ifmove = true
+      })
+      $('.fall').mousemove(function(e){
+        if(ifmove){
+          page_x = e.pageX - img_width/2
+          page_y = e.pageY - img_height/2
+          that.css({'left':page_x,'top':page_y})
+        }
+      })
+      $('.fall_img').on('mouseup',function(){
+        if(ifmove){
+          ifmove = false
+          fall_start(page_x+img_width/2,page_y,$(this))
+        }
+      })
+    }
 
     </script>
 </body>
