@@ -153,11 +153,7 @@
     
     <!-- <canvas id="canvas"></canvas> -->
     <script>
-        var audio = document.getElementsByTagName("audio")[0];
-        audio.volume = 0.5; //设置音量为50%
-        window.onload = function () {
-            audio.play();
-        }
+       
 
 
         var data = document.getElementById('data')
@@ -358,7 +354,11 @@
 
 
         })
-
+ var audio = document.getElementsByTagName("audio")[0];
+        audio.volume = 0.5; //设置音量为50%
+        window.onload = function () {
+            audio.play();
+        }
     </script>
 </body>
 
