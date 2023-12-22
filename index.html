@@ -51,7 +51,7 @@
             font-family: 楷体;
             opacity: 0.9;
             font-size: 0.8rem;
-            color: #8b08ef;
+            color: #fd7b0a;
             text-align: center;
         }
 
@@ -94,6 +94,7 @@
             font: normal 14px/1.5 Tahoma, "Lucida Grande", Verdana, "Microsoft Yahei", STXihei, hei;
             color: #000;
             overflow-x: hidden;
+            overflow: hidden;
             -webkit-tap-highlight-color: transparent;
         }
 
@@ -107,13 +108,36 @@
         div {
             box-sizing: border-box;
         }
+
+
+
+
+        .fall{
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      min-width: 10rem;
+      min-height: 100%;
+      overflow: hidden;
+    }
+    .fall_img{
+      position: absolute;
+      background-size: cover !important;
+      z-index: 1000;
+    }
+
+
+
+
+
     </style>
 </head>
 
 <body>
 
     <audio loop="loop" preload="auto" src="忘记时间.mp3" autoplay></audio>
-
+    <div class="fall"></div>
     <div class="box1">
         <h1>黄正先和聂琰已经相爱</h1>
         <ul class="one">
@@ -141,38 +165,104 @@
     </div>
 
     </div>
-    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="jquery-3.3.1.min.js"></script>
     <script>
         window.onload = function () {
-            var minSize = 10; //最小字体
-            var maxSize = 20;//最大字体
-            var newOne = 200; //生成雪花间隔
-            var flakColor = "#fff"; //雪花颜色
-            var flak = $("<div class='xh'></div>").css({ position: "absolute", "top": "0px" }).html(' <img src="雪花.png">');//定义一个雪花
-            var dhight = $(window).height(); //定义视图高度
-            var dw = $(window).width(); //定义视图宽度
-            setInterval(function () {
-                var sizeflak = minSize + Math.random() * maxSize; //产生大小不等的雪花
-                var startLeft = Math.random() * dw; //雪花生成是随机的left值
-                var startopcity = 0.7 + Math.random() * 0.6; //随机透明度
-                var endpositionTop = dhight; //雪花停止top的位置
-                var endLeft = Math.random() * dw; //雪花停止的left位置
-                var durationfull = 5000 + Math.random() * 6000; //雪花飘落速度不同
-                flak.clone().appendTo($("body")).css({
-                    "left": startLeft,
-                    "opacity": startopcity,
-                    "font-size": sizeflak,
-                    "color": flakColor
-                }).animate({
-                    "top": endpositionTop,
-                    "left": endLeft,
-                    "apacity": 0.1
-                }, durationfull, function () {
-                    $(this).remove()
-                });
-            }, newOne);
+            var minSize = 20; //最小字体
+            var maxSize = 120;//最大字体
+            var newOne = 100; //生成雪花间隔
+           
         }
+        var idx = 0,
+        img_width = 15,
+        img_height = 15,
+        ifmove = false,
+        page_x,
+        page_y,
+        that,
+        min_length = 120,   //最少雪花数量
+        win_width = $(window).width();
 
+    $(window).resize(function(){
+      win_width = $(window).width()
+    })
+
+    var interval = setInterval(function(){
+      var fall_x = Math.floor(Math.random()*(win_width-img_width/2))
+      $('.fall').append("<div class='fall_img' style='background:url(fall.png) no-repeat'></div>")
+      var select = $('.fall_img').eq(idx)
+      img_click()
+      fall_start(fall_x,-img_height,select)
+      idx++
+    }, 800);
+
+    document.addEventListener('visibilitychange',function(){
+      if(document.hidden){
+        all_stop()
+      }else{
+        all_start()
+      }
+    })
+
+    function fall_start(fall_x,fall_y,select) {
+      var left = fall_x - img_width/2
+      select.css({'top':fall_y,'left':left,'width':img_width,'height':img_height})
+      fall_animate(select,fall_y)
+    }
+
+    function fall_animate(select,fall_y){
+      var move_y = $('.fall').height() + img_height
+      var move_ys = $('.fall').height() + img_height - fall_y
+      var move_time = (move_ys/img_height)*200
+      select.animate({top:move_y},move_time,'linear',function(){
+        if(idx > min_length){ 
+          clearInterval(interval)
+        }
+        var fall_x = Math.floor(Math.random()*(win_width-img_width/2))
+        fall_start(fall_x,-img_height,$(this))
+      })
+    }
+
+    function fall_stop(select){
+      select.stop(true,false)
+    }
+
+    function all_stop(){
+      $('.fall_img').each(function(){
+        $(this).stop(true,false)
+      })
+    }
+
+    function all_start() {
+      $('.fall_img').each(function(){
+        var this_top = $(this)[0].offsetTop
+        var this_left = $(this)[0].offsetLeft
+        fall_start(this_left+img_width/2,this_top,$(this))
+      })
+    }
+
+    function img_click(){
+      $('.fall_img').on('mousedown',function(e){
+        fall_stop($(this))
+        that = $(this)
+        page_x = e.pageX - img_width/2
+        page_y = e.pageY - img_height/2
+        ifmove = true
+      })
+      $('.fall').mousemove(function(e){
+        if(ifmove){
+          page_x = e.pageX - img_width/2
+          page_y = e.pageY - img_height/2
+          that.css({'left':page_x,'top':page_y})
+        }
+      })
+      $('.fall_img').on('mouseup',function(){
+        if(ifmove){
+          ifmove = false
+          fall_start(page_x+img_width/2,page_y,$(this))
+        }
+      })
+    }
 
 
 
